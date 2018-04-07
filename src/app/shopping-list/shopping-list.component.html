@@ -1,4 +1,4 @@
-<form>
+<form class="mb-3">
   <div class="input-group mt3">
     <input type="text" class="form-control" name="myInput"
       placeholder="Item name" [(ngModel)] = "itemToAdd">
@@ -8,7 +8,7 @@
 </form>
 <ul class="list-group">
   <app-shopping-list-item 
-    *ngFor="let item of listItems"
+    *ngFor="let item of listItems | async"
     [item]="item">
   </app-shopping-list-item>
 </ul>

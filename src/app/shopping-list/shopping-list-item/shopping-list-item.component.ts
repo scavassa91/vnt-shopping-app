@@ -14,13 +14,7 @@ export class ShoppingListItemComponent implements OnInit {
   constructor(private myShoppingListService: ShoppingListService) { }
 
   public removeItem () {
-    this.myShoppingListService.remove(this.listItem).subscribe(
-      response => {
-        console.log('Deu certo!');
-        this.deleted= true;
-      },
-      error => { console.log('Deu erro!') }
-    );
+    this.myShoppingListService.remove(this.listItem);
   }
 
   public crossItem () {
@@ -29,14 +23,7 @@ export class ShoppingListItemComponent implements OnInit {
       name: this.listItem.name,
       disabled: true
     };
-    this.listItem.disabled = true;
-    this.myShoppingListService.edit(itemEdited).subscribe(
-      response => {
-        console.log("Item editado!");
-        this.listItem.disabled = true;
-      },
-      error => { console.log("Erro ao editar o item!") }
-    );
+    this.myShoppingListService.edit(itemEdited);
   }
 
   ngOnInit() {

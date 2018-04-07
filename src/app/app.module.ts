@@ -19,6 +19,12 @@ import { AuthService } from './services/auth.service';
 
 // Http Client
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
+// Angular Firebase Modules
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // Pesquisar sobre activated route
 // CanActivateChild, CanDeactivate, CanLoad
@@ -35,6 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
   providers: [
