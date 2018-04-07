@@ -13,13 +13,29 @@ export class ShoppingListItemComponent implements OnInit {
 
   constructor(private myShoppingListService: ShoppingListService) { }
 
-  private removeItem () {
+  public removeItem () {
     this.myShoppingListService.remove(this.listItem).subscribe(
       response => {
         console.log('Deu certo!');
         this.deleted= true;
       },
       error => { console.log('Deu erro!') }
+    );
+  }
+
+  public crossItem () {
+    let itemEdited = {
+      key: this.listItem.key,
+      name: this.listItem.name,
+      disabled: true
+    };
+    this.listItem.disabled = true;
+    this.myShoppingListService.edit(itemEdited).subscribe(
+      response => {
+        console.log("Item editado!");
+        this.listItem.disabled = true;
+      },
+      error => { console.log("Erro ao editar o item!") }
     );
   }
 

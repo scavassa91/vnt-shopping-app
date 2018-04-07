@@ -20,15 +20,11 @@ export class ShoppingListService {
 
   public remove (item): Observable<Object> {
     return this.httpCliente.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`);
-    // TODO: Verificar se o item existe
-    //let index = this.listItems.indexOf(item);
-    //this.listItems.splice(index, 1);
   }
 
-  public cross (item) {
-    // TODO: Verificar se o item existe
-    let index = this.listItems.indexOf(item);
-    this.listItems[index].disabled = true;
+  public edit (item): Observable<Object> {
+    const { key, ...newItem } = item;
+    return this.httpCliente.put(`${environment.firebase.databaseURL}/items/${item.key}.json`, newItem);
   }
 
 }
