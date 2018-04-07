@@ -1,6 +1,17 @@
 <div class="container-fluid">
-  <app-header></app-header>
-  <div class="content">
-    <router-outlet></router-outlet>
+  <div *ngIf="authService.afAuth.authState | async as user; else showLogin">
+    <div class="text-right">Hi {{ user.displayName }}! <button class="btn btn-danger btn-sm" (click)="logout()">Logout</button> </div>
+  
+    <app-header></app-header>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
+
+  <ng-template #showLogin>
+    <div class="container text-center">
+      <h3>Plase login</h3>
+      <button class="btn btn-primary" (click)="login()">Login with Google</button>
+    </div>
+  </ng-template>
 </div>
