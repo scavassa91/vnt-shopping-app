@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 
 
@@ -17,7 +18,8 @@ import { ShoppingListService } from './services/shopping-list.service';
     ShoppingListItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     ShoppingListService

@@ -25,4 +25,20 @@ export class ShoppingListService {
     return this.listItems;
   }
 
+  public add (item) {
+    this.listItems.unshift(item);
+  }
+
+  public remove (item) {
+    // TODO: Verificar se o item existe
+    let index = this.listItems.indexOf(item);
+    this.listItems.splice(index, 1);
+  }
+
+  public cross (item) {
+    // TODO: Verificar se o item existe
+    let index = this.listItems.indexOf(item);
+    this.listItems[index].disabled = true;
+  }
+
 }

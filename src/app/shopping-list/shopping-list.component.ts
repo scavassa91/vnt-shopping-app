@@ -10,12 +10,25 @@ export class ShoppingListComponent implements OnInit {
 
   private listItems: Array<any>;
 
+  private itemToAdd: string = '';
+
   constructor(private myShoppingListService: ShoppingListService) {
     this.listItems = this.myShoppingListService.findAll();
   }
 
   ngOnInit() {
     console.log(this.listItems);
+  }
+
+  private addObjectToList () {
+    // Criar
+    let newItem = {
+      name: this.itemToAdd,
+      disabled: false
+    };
+    // Adicionar
+    this.myShoppingListService.add(newItem);
+    this.itemToAdd = '';
   }
 
 }
