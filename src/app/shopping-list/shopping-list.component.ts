@@ -8,18 +8,22 @@ import { ShoppingListService } from '../services/shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  private listItems: Object;
+  private listItems: Array<any>;
 
   private itemToAdd: string = '';
 
   constructor(private myShoppingListService: ShoppingListService) {
     this.myShoppingListService.findAll().subscribe(
       response => {
-        this.listItems = Object.keys(response).map(id => {
-          let item: any = response[id];
-          item.key = id;
-          return item;
-        })
+        if (response) {
+          this.listItems = Object.keys(response).map(id => {
+            let item: any = response[id];
+            item.key = id;
+            return item;
+          })
+        } else {
+          this.listItems = [];
+        }
       },
       erro => { console.error(erro) }
     )
@@ -34,7 +38,16 @@ export class ShoppingListComponent implements OnInit {
       disabled: false
     };
     // Adicionar
-    this.myShoppingListService.add(newItem);
+    this.myShoppingListService.add(newItem).subscribe(
+      response => {
+        newItem['key'] = response;
+        this.listItems.unshift(newItem);
+        
+      },
+      error => { console.log('Deu erro!') }
+    );
+
+
     this.itemToAdd = '';
   }
 

@@ -28,11 +28,8 @@ export class ShoppingListService {
     return this.httpCliente.get(`${environment.firebase.databaseURL}/items.json`);
   }
 
-  public add (item) {
-    this.httpCliente.post(`${environment.firebase.databaseURL}/items.json`, item).subscribe(
-      response => { console.log('Deu certo!') },
-      error => { console.log('Deu erro!') }
-    );
+  public add (item): Observable<Object> {
+    return this.httpCliente.post(`${environment.firebase.databaseURL}/items.json`, item);
   }
 
   public remove (item) {
