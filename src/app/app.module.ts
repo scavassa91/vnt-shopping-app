@@ -17,6 +17,9 @@ import { AboutComponent } from './about/about.component';
 import { ShoppingListService } from './services/shopping-list.service';
 import { AuthService } from './services/auth.service';
 
+// Http Client
+import { HttpClientModule } from '@angular/common/http';
+
 // Pesquisar sobre activated route
 // CanActivateChild, CanDeactivate, CanLoad
 
@@ -31,6 +34,7 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
   providers: [
