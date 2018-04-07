@@ -9,8 +9,19 @@ import { ShoppingListService } from '../../services/shopping-list.service';
 export class ShoppingListItemComponent implements OnInit {
 
   @Input("item") private listItem: any;
+  public deleted: boolean = false;
 
   constructor(private myShoppingListService: ShoppingListService) { }
+
+  private removeItem () {
+    this.myShoppingListService.remove(this.listItem).subscribe(
+      response => {
+        console.log('Deu certo!');
+        this.deleted= true;
+      },
+      error => { console.log('Deu erro!') }
+    );
+  }
 
   ngOnInit() {
   }

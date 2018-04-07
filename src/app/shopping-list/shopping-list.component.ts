@@ -40,7 +40,7 @@ export class ShoppingListComponent implements OnInit {
     // Adicionar
     this.myShoppingListService.add(newItem).subscribe(
       response => {
-        newItem['key'] = response;
+        newItem['key'] = response['name'];
         this.listItems.unshift(newItem);
         
       },

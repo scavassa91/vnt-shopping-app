@@ -8,21 +8,7 @@ export class ShoppingListService {
 
   private listItems: Array<any>;
 
-  constructor(private httpCliente: HttpClient) {
-    this.listItems = [{
-      name: 'Bread',
-      disabled: false
-    },{
-      name: 'Butter',
-      disabled: false
-    },{
-      name: 'Coffee',
-      disabled: false
-    },{
-      name: 'Cookies',
-      disabled: true
-    },];
-  }
+  constructor(private httpCliente: HttpClient) { }
 
   public findAll (): Observable<Object> {
     return this.httpCliente.get(`${environment.firebase.databaseURL}/items.json`);
@@ -32,10 +18,11 @@ export class ShoppingListService {
     return this.httpCliente.post(`${environment.firebase.databaseURL}/items.json`, item);
   }
 
-  public remove (item) {
+  public remove (item): Observable<Object> {
+    return this.httpCliente.delete(`${environment.firebase.databaseURL}/items/${item.key}.json`);
     // TODO: Verificar se o item existe
-    let index = this.listItems.indexOf(item);
-    this.listItems.splice(index, 1);
+    //let index = this.listItems.indexOf(item);
+    //this.listItems.splice(index, 1);
   }
 
   public cross (item) {
